@@ -1,0 +1,22 @@
+<ng-container [ngSwitch]="mode">
+  <ng-container *ngSwitchCase="formStateMode.Edit" [ngTemplateOutlet]="editTemplate"></ng-container>
+  <ng-container *ngSwitchCase="formStateMode.Review" [ngTemplateOutlet]="reviewTemplate"></ng-container>
+  <ng-container *ngSwitchDefault>{{mode}} mode not implemented</ng-container>
+</ng-container>
+
+<ng-template #editTemplate>
+  <dsg-google-maps-autocomplete
+    [formControl]="formControl"
+    [formlyAttributes]="field"
+    [label]="props.label"
+    [required]="!!props.required"
+    (gotGoogleAddress)="setAutocompleteFields($event)"
+  ></dsg-google-maps-autocomplete>
+</ng-template>
+
+<ng-template #reviewTemplate>
+  <div class="field-value-container">
+    <div class="field-label">{{ props.label }}:</div>
+    <div class="field-value">{{ formControl.value }}</div>
+  </div>
+</ng-template>

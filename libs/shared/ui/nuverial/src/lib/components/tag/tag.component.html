@@ -1,0 +1,6 @@
+<span class="nuverial-tag" [matTooltip]="tag.label" [style.background]="tagBackgroundColor" [style.borderColor]="tagBorderColor" matTooltipPosition="above">
+  <ng-container *ngIf="tag.icon">
+    <nuverial-icon [iconName]="tag.icon" [outlined]="true" [style.--nuverial-icon-color]="tagIconColor" />
+  </ng-container>
+  <p [style.color]="tagTextColor">{{tag.label}}</p>
+</span>

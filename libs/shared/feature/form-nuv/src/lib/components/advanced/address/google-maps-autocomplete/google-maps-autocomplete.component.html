@@ -1,0 +1,8 @@
+<div class="google-maps-autocomplete form-wrapper">
+  <nuverial-text-input
+    [formControl]="formControl"
+    [label]="component?.props?.label || label"
+    [required]="!!component?.props?.required"
+    (exposeInput)="getInputElement($event)"
+  ></nuverial-text-input>
+</div>

@@ -1,0 +1,91 @@
+@use '@dsg/shared-theme/partials/functions/rem';
+@use '@dsg/shared-theme/partials/variables' as themeVars;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0 1rem;
+  gap: 1rem;
+  flex: 1;
+  max-width: 670px;
+  width: 100%;
+
+  & > .invitation-wrapper {
+    border-radius: 0.25rem;
+    background-color: var(--theme-color-white);
+    border: 1px solid var(--theme-color-m3-neutral-90);
+    padding: rem.fromPx(24px);
+    gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > .invitation-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      & > .profile-name {
+        font-size: rem.fromPx(22px);
+      }
+
+      & > .expiration {
+        display: flex;
+        align-items: center;
+        gap: rem.fromPx(4px);
+
+        &.status-expired {
+          color: var(--theme-color-error);
+          .nuverial-icon {
+            --nuverial-icon-color: var(--theme-color-error);
+          }
+        }
+
+        &.status-imminent {
+          color: var(--theme-color-priority-medium);
+          .nuverial-icon {
+            --nuverial-icon-color: var(--theme-color-priority-medium);
+          }
+        }
+      }
+    }
+
+    .nuverial-pill {
+      --nuverial-pill-background-color: var(--theme-color-success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: rem.fromPx(10px);
+
+      .nuverial-icon {
+        --nuverial-icon-color: var(--theme-color-white);
+      }
+    }
+  }
+
+  & > .error-message-wrapper {
+    border-radius: 0.25rem;
+    background-color: var(--theme-color-white);
+    border: 1px solid var(--theme-color-m3-neutral-90);
+    padding: rem.fromPx(56px) rem.fromPx(24px);
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > .error-title {
+      font-size: rem.fromPx(30px);
+      font-weight: var(--theme-typography-font-weight-bold);
+    }
+  }
+
+  @media screen and (max-width: themeVars.$layout-mobile-breakpoint) {
+    width: auto;
+
+    & > .invitation-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+}

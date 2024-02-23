@@ -1,0 +1,42 @@
+@use '@dsg/shared-theme/partials/functions/rem';
+
+:host {
+  display: block;
+
+  .drop-container {
+    position: relative;
+
+    .drop-indicator {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border: 4px dashed var(--theme-color-m3-neutral-85);
+      background-color: var(--theme-color-white);
+      opacity: 0.8;
+      z-index: 2;
+
+      &__text {
+        text-align: center;
+        color: var(--theme-color-m3-neutral-85);
+        font-size: rem.fromPx(40px);
+      }
+    }
+
+    .drop-indicator * {
+      pointer-events: none;
+    }
+
+    ::ng-deep * {
+      .NgxEditor {
+        p {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}

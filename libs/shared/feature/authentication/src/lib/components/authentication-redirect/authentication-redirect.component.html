@@ -1,0 +1,14 @@
+<nuverial-spinner *ngIf="(redirectResult$ | async) === null; else errorTemplate"></nuverial-spinner>
+
+<ng-template #errorTemplate>
+  <nuverial-card>
+    <h1 nuverialCardContentType="title">Failed</h1>
+    <div class="authentication-redirect-card" nuverialCardContentType="content">
+      <div class="authentication-redirect-card__message">{{failureMessage}}</div>
+
+      <nuverial-button [ariaLabel]="'Sign in'" [uppercaseText]="true" (click)="signInWithRedirect()" buttonStyle="filled" colorTheme="primary"
+        >Sign in</nuverial-button
+      >
+    </div>
+  </nuverial-card>
+</ng-template>

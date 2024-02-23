@@ -1,0 +1,24 @@
+net:
+  host: 'employer.cwb05.test'
+
+firebase:
+  project: "cwb05-dev"
+
+environmentJSON: {
+  authenticationConfiguration: {
+    firebaseConfiguration: {
+      firebase: {
+        apiKey: "AIzaSyB_SiZqAwS4z0GLV8sVZv6-4OO5xy-H-SE",
+        authDomain: "cwb05-dev.firebaseapp.com",
+      },
+      tenantId: 'employer-portal-pyavm',
+    },
+    sessionExpiration: {
+      idleTimeSeconds: 1800,
+      sessionTimeSeconds: 64800,
+    },
+  },
+  httpConfiguration: {
+    baseUrl: 'http://api.cwb05.test',
+  },
+}

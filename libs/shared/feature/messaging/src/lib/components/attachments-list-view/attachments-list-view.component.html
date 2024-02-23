@@ -1,0 +1,16 @@
+<div class="message__view-attachments" *ngIf="attachments.length > 0">
+  <div class="message__attachment-container" (click)="onClick($event)" (keyup.enter)="onClick($event)" tabindex="0">
+    <p class="attachment_header">Attachments:</p>
+    <ng-container *ngFor="let attachment of attachments; index as index; trackBy:trackByFn">
+      <ng-container *ngTemplateOutlet="viewAttachments; context:{attachment, index}"></ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #viewAttachments let-attachment="attachment" let-index="index">
+  <div class="message__attachments">
+    <nuverial-icon iconName="description"></nuverial-icon>
+    <a (click)="downloadFile($event, attachment)" (keyup.enter)="downloadFile($event, attachment)" tabindex="0"> {{attachmentNames[attachment]}} </a>
+    <br />
+  </div>
+</ng-template>

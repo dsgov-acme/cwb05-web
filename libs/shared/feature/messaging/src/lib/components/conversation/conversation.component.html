@@ -1,0 +1,75 @@
+<h3 class="conversation__title">{{conversation.subject}}</h3>
+
+<div class="conversation__header-actions">
+  <nuverial-button [ariaLabel]="toggleAllMessagesText" (click)="toggleAllMessages()">
+    <nuverial-icon [iconName]="toggleAllMessagesIcon" />
+    {{toggleAllMessagesText}}
+  </nuverial-button>
+</div>
+
+<ul class="conversation__messages" *ngIf="messages$ | async as messages">
+  <div class="conversation__messages__expand" *ngIf="!allMessagesLoaded && conversation.totalMessages > 4">
+    <button aria-label="load all messages" (click)="loadAllMessages()" type="button"><span> {{conversation.totalMessages - 3}} </span></button>
+  </div>
+  <ng-container *ngFor="let message of messages; index as index; trackBy:trackByFn">
+    <ng-container *ngTemplateOutlet="messageTemplate; context:{message, index}"></ng-container>
+  </ng-container>
+</ul>
+
+<div class="conversation__reply" *ngIf="replying">
+  <nuverial-form-errors class="conversation__reply__errors" *ngIf="formErrors.length" [formErrors]="formErrors" />
+  <h4 class="conversation__reply__title">Reply</h4>
+  <form id="reply-form" [formGroup]="replyForm">
+    <nuverial-rich-text-editor
+      class="conversation__reply__message"
+      ariaLabel="Message"
+      [enableAttachments]="true"
+      [id]="formConfigs.body.id"
+      (dragover)="dragOverHandler($event)"
+      (drop)="dropHandler($event)"
+      formControlName="body"
+      label="Message"
+    />
+    <dsg-rich-text-editor-attachment
+      class="conversation__reply__message__attachment-list"
+      [transactionId]="transactionId"
+      formControlName="attachments"
+    ></dsg-rich-text-editor-attachment>
+  </form>
+</div>
+
+<nuverial-footer-actions class="conversation__footer-actions" [footerActions]="actions" (actionSelected)="onActionClick($event)" />
+
+<ng-template #messageTemplate let-index="index" let-message="message">
+  <li
+    class="message"
+    [attr.tabindex]="undefined"
+    [class.default]="index === 0"
+    [class.pointer]="conversation.totalMessages > 1 && index !== 0"
+    (click)="index !== 0 && toggleCollapseMessage(message)"
+    (keyup.enter)="index !== 0 && toggleCollapseMessage(message)"
+    role="button"
+  >
+    <div class="message__header">
+      <h4 class="message__sender">{{message.senderDisplayName}}</h4>
+      <nuverial-icon class="message__attachment-indicator" *ngIf="message.attachments.length > 0" iconName="attach_file" />
+      <p class="message__timestamp">
+        {{message.timestamp | date: "MM/dd/yy, h:mm a"}}
+        <ng-container *ngIf="(message.timestamp | nuverialTimeElapsed) !== '0 time'">({{message.timestamp | nuverialTimeElapsed}} ago)</ng-container>
+      </p>
+    </div>
+    <div class="message__collapsed" *ngIf="message.collapsed; else richText">
+      <p class="message__collapsed__text" #message_text>{{message.noFormatBody}}</p>
+      <!-- eslint-disable-next-line @angular-eslint/template/no-call-expression -->
+      <p class="message__collapsed__more" *ngIf="showMoreButton(message_text)">More</p>
+    </div>
+    <ng-template #richText>
+      <nuverial-rich-text-viewer [content]="message.body" />
+      <dsg-attachments-list-view
+        *ngIf="message.attachments.length > 0 && attachmentNames[message.id] && attachmentSizes[message.id] === message.attachments.length"
+        [attachmentNames]="attachmentNames[message.id]"
+        [attachments]="message.attachments"
+      />
+    </ng-template>
+  </li>
+</ng-template>

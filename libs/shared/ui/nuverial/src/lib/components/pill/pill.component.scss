@@ -1,0 +1,14 @@
+@use '@dsg/shared-theme/partials/functions/rem';
+
+:host {
+  --nuverial-pill-background-color: var(--theme-color-secondary);
+
+  padding: rem.fromPx(6px) rem.fromPx(16px);
+  border-radius: rem.fromPx(20px);
+  background-color: var(--nuverial-pill-background-color);
+  color: var(--theme-color-white);
+  font-size: var(--theme-typography-font-size-small);
+  font-weight: 400;
+  white-space: nowrap;
+  overflow-wrap: anywhere;
+}

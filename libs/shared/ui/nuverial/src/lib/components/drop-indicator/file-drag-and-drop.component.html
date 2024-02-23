@@ -1,0 +1,6 @@
+<div class="drop-container" #defaultTarget>
+  <div class="drop-indicator" [ngStyle]="{ 'display': visible ? 'flex' : 'none' }">
+    <div class="drop-indicator__text">Drop files here</div>
+  </div>
+  <ng-content></ng-content>
+</div>

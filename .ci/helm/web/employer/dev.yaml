@@ -1,0 +1,26 @@
+environment: "dev"
+
+firebase:
+  project: "cwb05-dev"
+
+net:
+  host: "employer-dev.cwb05.dsgov.demo.nuvalence.io"
+
+environmentJSON: {
+  authenticationConfiguration: {
+    firebaseConfiguration: {
+      firebase: {
+        apiKey: "AIzaSyB_SiZqAwS4z0GLV8sVZv6-4OO5xy-H-SE",
+        authDomain: "cwb05-dev.firebaseapp.com",
+      },
+      tenantId: 'employer-portal-pyavm',
+    },
+    sessionExpiration: {
+      idleTimeSeconds: 1800,
+      sessionTimeSeconds: 64800,
+    },
+  },
+  httpConfiguration: {
+    baseUrl: "https://api-dev.cwb05.dsgov.demo.nuvalence.io",
+  },
+}

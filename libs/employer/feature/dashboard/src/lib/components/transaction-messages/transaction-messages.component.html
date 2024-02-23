@@ -1,0 +1,17 @@
+<ng-container>
+  <section class="messages">
+    <div class="messages-header">
+      <ng-container *ngIf="hasBreadcrumb | async; else messagesTitle">
+        <nuverial-breadcrumb class="messages-breadcrumb" [breadCrumbs]="breadCrumbs"></nuverial-breadcrumb>
+      </ng-container>
+      <ng-template #messagesTitle>
+        <h2 class="messages-title">Messages</h2>
+      </ng-template>
+    </div>
+    <div class="messages-content">
+      <div class="messages-content-tabs">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </section>
+</ng-container>

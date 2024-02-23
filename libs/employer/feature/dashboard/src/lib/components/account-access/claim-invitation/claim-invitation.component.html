@@ -1,0 +1,44 @@
+<div>
+  <h1>Invitations</h1>
+  <p>Link your account to Employer Profiles</p>
+</div>
+
+<div class="invitation-wrapper" *ngIf="(details$ | async) as details">
+  <section class="invitation-details">
+    <div class="profile-name"><b>{{details.userProfile.displayName || 'N/A'}}</b></div>
+    <div class="expiration status-{{details.expirationStatus}}" [ngSwitch]="details.expirationStatus">
+      <ng-container *ngSwitchCase="expirationStatus.Valid">
+        Invited On: {{details.invitation.createdTimestamp | date: 'MM/dd/yyyy'}} <i>(Expires on {{details.invitation.expires | date: 'MM/dd/yyyy'}})</i>
+      </ng-container>
+      <ng-container *ngSwitchCase="expirationStatus.Imminent">
+        <nuverial-icon iconName="warning"></nuverial-icon>
+        <span
+          >Invited On: {{details.invitation.createdTimestamp | date: 'MM/dd/yyyy'}}
+          <i>({{details.invitation.expires | nuverialTimeRemaining}} remaining to claim invitation)</i></span
+        >
+      </ng-container>
+      <ng-container *ngSwitchCase="expirationStatus.Expired">
+        <nuverial-icon iconName="error"></nuverial-icon> Expired on {{details.invitation.expires | date: 'MM/dd/yyyy'}}
+      </ng-container>
+    </div>
+
+    <div>Role: <b>{{details.roleLabel}}</b></div>
+  </section>
+
+  <nuverial-pill *ngIf="details.invitation.claimed"><nuverial-icon iconName="checkmark"></nuverial-icon> Confirmed</nuverial-pill>
+  <nuverial-button
+    *ngIf="!details.invitation.claimed && details.expirationStatus !== expirationStatus.Expired"
+    (click)="claimInvitation()"
+    buttonStyle="outlined"
+    buttonType="button"
+    colorTheme="primary"
+    >Confirm</nuverial-button
+  >
+</div>
+
+<div class="error-message-wrapper" *ngIf="(errorMessage$ | async) as _errorMessage">
+  <div class="error-title">Unable to load the invitation</div>
+  <div>Please contact the sender to resend the invitation</div>
+</div>
+
+<nuverial-footer-actions [footerActions]="actions" (actionSelected)="onFooterActionClick($event)"></nuverial-footer-actions>

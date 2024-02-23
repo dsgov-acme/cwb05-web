@@ -1,0 +1,26 @@
+environment: "prod"
+
+firebase:
+  project: "cwb05-prod"
+
+net:
+  host: "public.cwb05.dsgov.demo.nuvalence.io"
+
+environmentJSON: {
+  authenticationConfiguration: {
+    firebaseConfiguration: {
+      firebase: {
+        apiKey: "",
+        authDomain: "cwb05-prod.firebaseapp.com",
+      },
+      tenantId: 'public-portal-dfrky',
+    },
+    sessionExpiration: {
+      idleTimeSeconds: 1800,
+      sessionTimeSeconds: 64800,
+    },
+  },
+  httpConfiguration: {
+    baseUrl: "https://api.cwb05.dsgov.demo.nuvalence.io",
+  },
+}

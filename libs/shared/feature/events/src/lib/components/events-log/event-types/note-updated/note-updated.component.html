@@ -1,0 +1,10 @@
+<ng-container *ngIf="event">
+  <div class="content" *ngIf="title">
+    <b>Title </b>
+    <div>{{title}}</div>
+  </div>
+  <div *ngIf="body">
+    <b>Body</b>
+    <nuverial-rich-text-viewer class="content-rtf" [content]="body"></nuverial-rich-text-viewer>
+  </div>
+</ng-container>

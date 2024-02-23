@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true
+  },
+  "exclude": ["../**/*.spec.ts", "../../dsg-examples/**"],
+  "extends": "../tsconfig.json",
+  "include": [
+    "../../**/*.stories.ts",
+    "../../**/*.stories.js",
+    "../../**/*.stories.jsx",
+    "../../**/*.stories.tsx",
+    "../../**/*.stories.mdx",
+    "../../**/*.component.ts",
+    "*.js",
+    "*.ts"
+  ]
+}

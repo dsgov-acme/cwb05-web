@@ -1,0 +1,13 @@
+@use '@dsg/shared-theme/partials/functions/rem';
+
+:host {
+  display: block;
+
+  .content * {
+    display: inline;
+  }
+
+  .content-rtf {
+    padding: rem.fromPx(10px);
+  }
+}

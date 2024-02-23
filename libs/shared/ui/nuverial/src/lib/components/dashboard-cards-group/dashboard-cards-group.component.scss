@@ -1,0 +1,10 @@
+@use '@dsg/shared-theme/partials/functions/rem';
+
+:host {
+  display: grid;
+  max-width: min(100vw, calc((rem.fromPx(340px) + 24px) * 3));
+  grid-template-columns: repeat(auto-fill, minmax(calc(rem.fromPx(340px) + 24px), 1fr));
+  justify-content: space-between;
+  row-gap: 24px;
+  justify-items: center;
+}

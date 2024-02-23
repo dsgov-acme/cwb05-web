@@ -1,0 +1,36 @@
+@use '@dsg/shared-theme/partials/functions/rem';
+
+:host {
+  display: flex;
+  width: 100%;
+  background: var(--theme-color-m3-neutral-95);
+  position: relative;
+
+  .messages {
+    background: var(--theme-color-m3-neutral-95);
+    padding-bottom: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: rem.fromPx(35px);
+    width: 100%;
+
+    &-title {
+      font-size: rem.fromPx(22px);
+    }
+
+    &-content {
+      background: var(--theme-color-white);
+      display: flex;
+      flex: 1;
+
+      &-tabs,
+      &-tab {
+        display: flex;
+        flex: 1;
+        flex-flow: column nowrap;
+        max-width: 100%;
+      }
+    }
+  }
+}

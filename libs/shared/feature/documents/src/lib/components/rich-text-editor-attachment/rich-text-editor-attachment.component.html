@@ -1,0 +1,13 @@
+<div class="container">
+  <input aria-hidden="true" #fileInput (change)="handleFileSelection($event)" multiple type="file" />
+  <dsg-file-upload-list
+    [mobile]="isMobile"
+    (downloadFile)="downloadFile($event)"
+    (removeFile)="removeDocument($event)"
+    (stopUpload)="removeDocument($event)"
+  ></dsg-file-upload-list>
+  <nuverial-button class="add-attachment" ariaLabel="Add Attachment" (click)="handleFileBrowserOpen($event)">
+    <nuverial-icon iconName="attach_file" />
+    Add Attachment
+  </nuverial-button>
+</div>
